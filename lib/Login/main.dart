@@ -29,7 +29,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Colors.blue, Colors.red]
+                colors: [Colors.green, Colors.blueGrey]
               )
             ),
           ),
@@ -47,7 +47,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          new Container(
+                         /* new Container(
                             padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
                             child: new Text(
                               "Go Pichanga!",
@@ -57,13 +57,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                          ),
+                          ),*/
                           new Container(
                             padding: EdgeInsets.only(bottom: 10.0),
                             child: new Column(
                               children: <Widget>[
                                 Image.asset('assets/images/wallpaperlogin.png',
-                                    width: 220.0, fit: BoxFit.cover),
+                                    width: 250.0, fit: BoxFit.cover),
                               ],
                             ),
                           ),
@@ -72,26 +72,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 left: 30.0, right: 30.0, bottom: 10.0),
                             child: new TextField(
                               decoration: new InputDecoration(
-                                  hintText: 'Ingresar mi usuario.'),
+                                  hintText: 'Usuario'),
                               style: TextStyle(
                                 fontFamily: "UbuntuRegular",
+                                height: 1.4
                               ),
                             ),
                           ),
                           new Container(
                             padding: EdgeInsets.only(
-                                left: 30.0, right: 30.0, bottom: 15.0),
+                                left: 30.0, right: 30.0, bottom: 35.0),
                             child: new TextField(
                               decoration: new InputDecoration(
-                                  hintText: 'Ingresar mi contraseña.'),
+                                  hintText: 'Contraseña'),
                               style: TextStyle(
                                 fontFamily: "UbuntuRegular",
+                                height: 1.4
                               ),
                             ),
                           ),
                           new Container(
                               width: 200.0,
-                              padding: EdgeInsets.only(left: 70.0, right: 70.0,bottom: 30.0),
+                              padding: EdgeInsets.only(left: 70.0, right: 70.0,bottom: 40.0),
                               child: new Column(
                                 children: <Widget>[
                                   new RaisedButton(
@@ -103,8 +105,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       /*centrar siempre y cuando el padre sea row*/
                                       children: <Widget>[
                                         Text(
-                                          " Ingresar",
-                                          style: TextStyle(color: Colors.white),
+                                          "Ingresar",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
                                           textAlign: TextAlign.center,
                                         ),
                                       ],
@@ -118,81 +122,49 @@ class _LoginWidgetState extends State<LoginWidget> {
                               )
                           ),
                           new Container(
-                              width: 200.0,
                               padding: EdgeInsets.only(left: 70.0, right: 70.0),
-                              child: new Column(
-                                children: <Widget>[
-                                  new RaisedButton(
-                                    color: Colors.blueAccent,
-                                    padding: EdgeInsets.all(7.0),
-                                    child: Row(
-                                      mainAxisAlignment:
+                              child: new Row(
+                                 mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      /*centrar siempre y cuando el padre sea row*/
-                                      children: <Widget>[
-                                        Icon(
-                                          FontAwesomeIcons.facebookSquare,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          " Continuar con Facebook",
-                                          style: TextStyle(color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+                                children: <Widget>[
+                                  new RawMaterialButton(
+                                    onPressed: () {},
+                                    child: new Icon(
+                                      FontAwesomeIcons.facebookSquare,
+                                      color: Colors.white,
                                     ),
-                                    shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(20.0)),
-                                    onPressed: () => {},
+                                    shape: new CircleBorder(),
+                                    elevation: 2.0,
+                                    fillColor: Colors.blueAccent,
+                                    padding: const EdgeInsets.all(10.0),
+                                  ),
+                                  new RawMaterialButton(
+                                    onPressed: () {},
+                                    child: new Icon(
+                                      FontAwesomeIcons.google,
+                                      color: Colors.white,
+                                    ),
+                                    shape: new CircleBorder(),
+                                    elevation: 2.0,
+                                    fillColor: Colors.redAccent,
+                                    padding: const EdgeInsets.all(10.0),
                                   ),
                                 ],
                               )
-                          ),
+                          ), 
                           new Container(
-                              width: 200.0,
-                              padding: EdgeInsets.only(left: 70.0, right: 70.0,bottom: 50.0),
+                              padding: EdgeInsets.only(top: 120.0),
                               child: new Column(
                                 children: <Widget>[
                                   new RaisedButton(
-                                    color: Colors.redAccent,
-                                    padding: EdgeInsets.all(7.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      /*centrar siempre y cuando el padre sea row*/
-                                      children: <Widget>[
-                                        Icon(
-                                          FontAwesomeIcons.google,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          " Continuar con Google",
-                                          style: TextStyle(color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                    shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(20.0)),
-                                    onPressed: () => {},
-                                  ),
-                                ],
-                              )
-                          ),
-                          new Container(
-                              child: new Column(
-                                children: <Widget>[
-                                  new RaisedButton(
-                                    color: HexColor('#ffffff').withOpacity(0.5),
+                                    color: Colors.white,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       /*centrar siempre y cuando el padre sea row*/
                                       children: <Widget>[
                                         Text(
-                                          "Entrar cómo visitante.",
+                                          "Soy un visitante",
                                           style: TextStyle(
                                             color: Colors.blue,
                                           ),
@@ -200,21 +172,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         ),
                                       ],
                                     ),
-                                    shape: new RoundedRectangleBorder(
+                                  shape: new RoundedRectangleBorder(
                                         borderRadius:
                                             new BorderRadius.circular(20.0)),
                                     onPressed: () => {},
                                   ),
+                                  
                                 ],
-                              )
+                              ),
                           ),
                           
                         ],
                       ),
                       width: double.infinity,
-                      height: 740.0,
+                      height: 760.0,
                       decoration: BoxDecoration(
-                        color: HexColor('#ffffff').withOpacity(0.5),
+                        color: HexColor('#ffffff'),
                         borderRadius: BorderRadius.circular(8.0),
                         boxShadow: [
                           BoxShadow(
