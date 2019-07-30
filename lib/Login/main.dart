@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 class LoginWidget extends StatefulWidget {
   _LoginWidgetState createState() => _LoginWidgetState();
 }
@@ -18,6 +20,17 @@ class HexColor extends Color {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+
+  getData() async{
+    http.Response response = await http.get('http://192.168.0.36/wscourse_flutter/login/auth');
+    debugPrint(response.body);
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -122,7 +135,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               )
                           ),
                           new Container(
-                              padding: EdgeInsets.only(left: 70.0, right: 70.0),
+                              
                               child: new Row(
                                  mainAxisAlignment:
                                           MainAxisAlignment.center,
