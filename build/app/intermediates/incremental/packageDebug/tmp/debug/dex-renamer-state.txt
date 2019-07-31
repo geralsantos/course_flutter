@@ -1,4 +1,4 @@
-#Mon Jul 29 00:06:55 COT 2019
+#Tue Jul 30 22:09:18 COT 2019
 base.0=C\:\\xampp\\htdocs\\course_flutter\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

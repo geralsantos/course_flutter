@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+
 import 'dart:convert';
 class LoginWidget extends StatefulWidget {
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -20,7 +22,36 @@ class HexColor extends Color {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-
+  bool isLoggedIn=false;
+void initiateFacebook() async{
+  var login=FacebookLogin();
+  var result = await login.logInWithReadPermissions(['email']);
+  switch (result.status) {
+    case FacebookLoginStatus.error:
+      print("Sugió un error");
+      break;
+    case FacebookLoginStatus.cancelledByUser:
+      print("Cancelado por el usuario");
+    break;
+    case FacebookLoginStatus.loggedIn:
+      onLoginStatusChange(true);
+      this.getUserInfo(result);
+    break;
+    default:
+  }
+}
+void getUserInfo(FacebookLoginResult result) async{
+final token = result.accessToken.token;
+final graphResponse = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=${token}');
+final profile = json.decode(graphResponse.body);
+print(profile);
+}
+void onLoginStatusChange(bool isLoggedIn){
+ setState(() {
+   this.isLoggedIn = isLoggedIn;
+ });
+}
   getData() async{
     http.Response response = await http.get('http://192.168.0.36/wscourse_flutter/login/auth');
     debugPrint(response.body);
@@ -29,7 +60,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData();
+   // getData();
   }
   @override
   Widget build(BuildContext context) {
@@ -117,12 +148,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           MainAxisAlignment.center,
                                       /*centrar siempre y cuando el padre sea row*/
                                       children: <Widget>[
-                                        Text(
-                                          "Ingresar",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.center,
+                                        (isLoggedIn?
+                                          Text(
+                                            "Bienvenido",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ):Text(
+                                            "Ingresar",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          )
                                         ),
                                       ],
                                     ),
@@ -141,7 +180,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           MainAxisAlignment.center,
                                 children: <Widget>[
                                   new RawMaterialButton(
-                                    onPressed: () {},
+                                    onPressed: () {this.initiateFacebook();},
                                     child: new Icon(
                                       FontAwesomeIcons.facebookSquare,
                                       color: Colors.white,

@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_facebook_login: 2.0.1
+
   font_awesome_flutter: ^8.2.0
 
 
